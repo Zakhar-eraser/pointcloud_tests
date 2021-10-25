@@ -1,6 +1,6 @@
 #include <ros/ros.h>
 #include <geometry_msgs/PointStamped.h>
-#include "mean_distances/PointCloud2MatConverts.hpp"
+#include "pointcloud_tests/PointCloud2MatConverts.hpp"
 
 ros::NodeHandle *nh;
 ros::Subscriber sub;

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(mean_distances)
+project(pointcloud_tests)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -21,13 +21,13 @@ catkin_package(
   INCLUDE_DIRS include
 )
 
-add_executable(${PROJECT_NAME}_node src/mean_distances.cpp src/PointCloud2MatConverts.cpp)
-target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES} ${OpenCV_LIBS})
-add_dependencies(${PROJECT_NAME}_node ${catkin_EXPORTED_TARGETS})
+add_executable(mean_distances_node src/mean_distances.cpp src/PointCloud2MatConverts.cpp)
+target_link_libraries(mean_distances_node ${catkin_LIBRARIES} ${OpenCV_LIBS})
+add_dependencies(mean_distances_node ${catkin_EXPORTED_TARGETS})
 
 install(
     TARGETS
-    ${PROJECT_NAME}_node
+    mean_distances_node
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 )

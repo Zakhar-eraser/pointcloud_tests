@@ -1,6 +1,6 @@
 <launch>
     <param name="/mean_distances_node/pointcloud_topic" value="/camera/depth/color/points"/>
     <param name="/mean_distances_node/point_topic" value="/camera/depth/color/main"/>
-    <node name="mean_distances_node" pkg="mean_distances" type="mean_distances_node" output="screen">
+    <node name="mean_distances_node" pkg="pointcloud_tests" type="mean_distances_node" output="screen">
     </node>
 </launch>
