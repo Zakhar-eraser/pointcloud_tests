@@ -21,13 +21,21 @@ catkin_package(
   INCLUDE_DIRS include
 )
 
-add_executable(mean_distances_node src/mean_distances.cpp src/PointCloud2MatConverts.cpp)
-target_link_libraries(mean_distances_node ${catkin_LIBRARIES} ${OpenCV_LIBS})
+add_subdirectory(converts)
+
+add_executable(mean_distances_node src/mean_distances.cpp)
+target_include_directories(mean_distances_node PUBLIC converts/include)
+target_link_directories(mean_distances_node PRIVATE converts/)
+target_link_libraries(mean_distances_node ${catkin_LIBRARIES} ${OpenCV_LIBS} mat_pointcloud2_conerts)
 add_dependencies(mean_distances_node ${catkin_EXPORTED_TARGETS})
+
+add_executable(print_angles_node src/print_angles.cpp)
+target_link_libraries(print_angles_node ${catkin_LIBRARIES})
 
 install(
     TARGETS
     mean_distances_node
+    print_angles_node
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 )

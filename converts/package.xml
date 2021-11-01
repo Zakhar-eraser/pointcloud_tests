@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pointcloud_tests</name>
+  <version>0.0.0</version>
+  <description>Commonly using converts from pointcloud2 message to OpenCV`s Mat and back</description>
+  <maintainer email="79922187361@yandex.ru">Zakhar Anikin</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_export_depend>sensor_msgs</build_export_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <export>
+  </export>
+</package>

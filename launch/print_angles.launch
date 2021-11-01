@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find pointcloud_tests)/launch/mean_distances.launch">
+        <arg name="camera_name" value="camera"/>
+    </include>
+    <node name="print_angles_node" pkg="pointcloud_tests" type="print_angles_node" ns="mean_distances" output="screen"/>
+</launch>

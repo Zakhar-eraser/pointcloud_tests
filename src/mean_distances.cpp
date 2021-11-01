@@ -1,6 +1,5 @@
 #include <ros/ros.h>
-#include <geometry_msgs/PointStamped.h>
-#include "pointcloud_tests/PointCloud2MatConverts.hpp"
+#include "PointCloud2MatConverts.hpp"
 
 ros::NodeHandle *nh;
 ros::Subscriber sub;
@@ -72,8 +71,8 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "mean_distances_node");
     nh = new ros::NodeHandle();
-    nh->getParam("/mean_distances_node/pointcloud_topic", topic2Subscribe);
-    nh->getParam("/mean_distances_node/point_topic", topic2Publish);
+    nh->getParam("pointcloud_topic", topic2Subscribe);
+    nh->getParam("mean_points_topic", topic2Publish);
     sub = nh->subscribe<sensor_msgs::PointCloud2>(topic2Subscribe, 1, Callback);
     pub = nh->advertise<sensor_msgs::PointCloud2>(topic2Publish, 1);
 

@@ -1,4 +1,4 @@
-#include "pointcloud_tests/PointCloud2MatConverts.hpp"
+#include "PointCloud2MatConverts.hpp"
 
 void PointCloud22Mat(sensor_msgs::PointCloud2 &point_cloud_msg, cv::Mat depthMat, cv::Mat colorMat)
 {
