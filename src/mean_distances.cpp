@@ -1,3 +1,13 @@
+/**
+ * @file mean_distances.cpp
+ * @author Zakhar Anikin (79922187361@yandex.ru)
+ * @brief Gets PointCloud2 message and calculate mean distances in 5 areas
+ * @version 0.1
+ * @date 2021-11-03
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #include <ros/ros.h>
 #include "PointCloud2MatConverts.hpp"
 
@@ -7,32 +17,32 @@ ros::Publisher pub;
 
 std::string topic2Subscribe;
 std::string topic2Publish;
+int windowSize = 1;
+
+int Saturate(int value, int leftBorder, int rightBorder)
+{
+    value += 1 - value % 2;
+    if(value > rightBorder)
+    {
+        return rightBorder;
+    }
+    else if(value < leftBorder) return leftBorder;
+    return value;
+}
 
 void Callback(sensor_msgs::PointCloud2ConstPtr msg)
 {
+    nh->getParam("window_size", windowSize);
     sensor_msgs::PointCloud2 point_cloud_msg = *msg.get();
     uint32_t width = point_cloud_msg.width;
     uint32_t height = point_cloud_msg.height;
     cv::Mat depthMat(height, width, CV_32FC1);
     cv::Mat colorMat(height, width, CV_8UC3);
     uint32_t windowWidth = width / 3;
-    windowWidth -= 1 - windowWidth % 2;
     uint32_t windowHeight = height / 3;
-    windowHeight -= 1 - windowHeight % 2;
+    uint32_t sizeX = Saturate(windowSize, 1, windowWidth);
+    uint32_t sizeY = Saturate(windowSize, 1, windowHeight);
     PointCloud22Mat(point_cloud_msg, depthMat, colorMat);
-    cv::Rect rectLeft(0, windowHeight - 1, windowWidth, windowHeight);
-    cv::Rect  rectCenter(windowWidth, windowHeight - 1, windowWidth, windowHeight);
-    cv::Rect  rectRight(windowWidth * 2, windowHeight - 1, windowWidth, windowHeight);
-    cv::Rect  rectUp(windowWidth, 0, windowWidth, windowHeight);
-    cv::Rect  rectDown(windowWidth, windowHeight * 2, windowWidth, windowHeight);
-
-    cv::Scalar_<uchar> colorMeansList[] = {cv::mean(colorMat(rectUp)), cv::mean(colorMat(rectLeft)),
-                                            cv::mean(colorMat(rectCenter)), cv::mean(colorMat(rectRight)),
-                                            cv::mean(colorMat(rectDown))};
-    
-    cv::Scalar_<float> depthMeansList[] = {cv::mean(depthMat(rectUp)), cv::mean(depthMat(rectLeft)),
-                                            cv::mean(depthMat(rectCenter)), cv::mean(depthMat(rectRight)),
-                                            cv::mean(depthMat(rectDown))};
     sensor_msgs::PointCloud2 points;
     points.header = point_cloud_msg.header;
     points.is_bigendian = point_cloud_msg.is_bigendian;
@@ -48,21 +58,28 @@ void Callback(sensor_msgs::PointCloud2ConstPtr msg)
     sensor_msgs::PointCloud2Iterator<uint8_t> write_rgb(points, "rgb");
     for(uint32_t i = 0; i < 5; i++, ++write_x, ++write_y, ++write_z, ++write_rgb)
     {
-        int order;
+        int centerX;
+        int centerY;
         if(i % 2 == 0)
         {
-            order = windowHeight / 2 * (i + 1) * width + windowWidth / 2 * 3;
+            centerX = width / 2;
+            centerY = windowHeight * (i + 1) / 2;
         }
         else
         {
-            order = windowHeight / 2 * 3 * width + windowWidth / 2 * (5 * i / 3);
+            centerX = windowWidth * (5 * i / 3) / 2;
+            centerY = height / 2;
         }
+        int order = centerY * width + centerX;
         *write_x = *(read_x + order);
         *write_y = *(read_y + order);
-        *write_z = depthMeansList[i][0];
-        write_rgb[0] = colorMeansList[i][0];
-        write_rgb[1] = colorMeansList[i][1];
-        write_rgb[2] = colorMeansList[i][2];      
+        cv::Rect rect(centerX - sizeX / 2, centerY - sizeY / 2, sizeX, sizeY);
+        cv::Scalar_<float> depth = cv::mean(depthMat(rect));
+        cv::Scalar_<uchar> color = cv::mean(colorMat(rect));
+        *write_z = depth[0];
+        write_rgb[0] = color[0];
+        write_rgb[1] = color[1];
+        write_rgb[2] = color[2];     
     }
     pub.publish(points);
 }

@@ -12,6 +12,7 @@
 /home/zakhar/catkin_ws/src/pointcloud_tests/build/CMakeFiles/geometry_msgs_generate_messages_py.dir
 /home/zakhar/catkin_ws/src/pointcloud_tests/build/CMakeFiles/sensor_msgs_generate_messages_py.dir
 /home/zakhar/catkin_ws/src/pointcloud_tests/build/CMakeFiles/geometry_msgs_generate_messages_cpp.dir
+/home/zakhar/catkin_ws/src/pointcloud_tests/build/CMakeFiles/print_angles_node.dir
 /home/zakhar/catkin_ws/src/pointcloud_tests/build/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir
 /home/zakhar/catkin_ws/src/pointcloud_tests/build/CMakeFiles/rebuild_cache.dir
 /home/zakhar/catkin_ws/src/pointcloud_tests/build/CMakeFiles/roscpp_generate_messages_eus.dir
@@ -61,3 +62,11 @@
 /home/zakhar/catkin_ws/src/pointcloud_tests/build/gtest/googletest/CMakeFiles/test.dir
 /home/zakhar/catkin_ws/src/pointcloud_tests/build/gtest/googletest/CMakeFiles/gtest_main.dir
 /home/zakhar/catkin_ws/src/pointcloud_tests/build/gtest/googletest/CMakeFiles/gtest.dir
+/home/zakhar/catkin_ws/src/pointcloud_tests/build/converts/CMakeFiles/install/local.dir
+/home/zakhar/catkin_ws/src/pointcloud_tests/build/converts/CMakeFiles/install.dir
+/home/zakhar/catkin_ws/src/pointcloud_tests/build/converts/CMakeFiles/list_install_components.dir
+/home/zakhar/catkin_ws/src/pointcloud_tests/build/converts/CMakeFiles/rebuild_cache.dir
+/home/zakhar/catkin_ws/src/pointcloud_tests/build/converts/CMakeFiles/edit_cache.dir
+/home/zakhar/catkin_ws/src/pointcloud_tests/build/converts/CMakeFiles/test.dir
+/home/zakhar/catkin_ws/src/pointcloud_tests/build/converts/CMakeFiles/install/strip.dir
+/home/zakhar/catkin_ws/src/pointcloud_tests/build/converts/CMakeFiles/mat_pointcloud2_conerts.dir

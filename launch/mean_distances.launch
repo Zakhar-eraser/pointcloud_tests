@@ -1,6 +1,8 @@
 <launch>
     <arg name="camera_name" default="camera"/>
+    <arg name="mean_window_size" default="1"/>
     <group ns="mean_distances">
+        <param name="window_size" value="$(arg mean_window_size)"/>
         <param name="pointcloud_topic" value="/$(arg camera_name)/depth/color/points"/>
         <param name="mean_points_topic" value="/$(arg camera_name)/depth/color/mean_points"/>
         <node name="mean_distances_node" pkg="pointcloud_tests" type="mean_distances_node" output="screen"/>

@@ -1,3 +1,14 @@
+/**
+ * @file print_angles.cpp
+ * @author Zakhar Anikin (79922187361@yandex.ru)
+ * @brief Gets PointCloud2 from mean_distances_node and log this distances and calculated angles
+ * @version 0.1
+ * @date 2021-11-03
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <sensor_msgs/point_cloud2_iterator.h>
@@ -17,8 +28,8 @@ void Callback(sensor_msgs::PointCloud2ConstPtr msg)
     leftDistance = (iter + 1)[2];
     rightDistance = (iter + 3)[2];
     lowerDistance = (iter + 4)[2];
-    yaw = atan2(leftDistance - rightDistance, (iter + 3)[0] * 2);
-    pitch = atan2(upperDistance - lowerDistance, (iter + 4)[1] * 2);
+    yaw = atan2(leftDistance - rightDistance, (iter + 3)[0] - (iter + 1)[0]);
+    pitch = atan2(lowerDistance - upperDistance, (iter + 4)[1] - iter[1]);
 }
 
 int main(int argc, char **argv)
