@@ -32,10 +32,14 @@ add_dependencies(mean_distances_node ${catkin_EXPORTED_TARGETS})
 add_executable(print_angles_node src/print_angles.cpp)
 target_link_libraries(print_angles_node ${catkin_LIBRARIES})
 
+add_executable(front_ranges_node src/front_ranges.cpp)
+target_link_libraries(front_ranges_node ${catkin_LIBRARIES})
+
 install(
     TARGETS
     mean_distances_node
     print_angles_node
+    front_ranges_node
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 )

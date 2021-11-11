@@ -50,8 +50,8 @@ void Callback(sensor_msgs::PointCloud2ConstPtr msg)
     sensor_msgs::PointCloud2Modifier pcd_modifier(points);
     pcd_modifier.setPointCloud2FieldsByString(2, "xyz", "rgb");
     pcd_modifier.resize(5);
-    sensor_msgs::PointCloud2Iterator<float> read_x(point_cloud_msg, "x");
-    sensor_msgs::PointCloud2Iterator<float> read_y(point_cloud_msg, "y");
+    sensor_msgs::PointCloud2ConstIterator<float> read_x(point_cloud_msg, "x");
+    sensor_msgs::PointCloud2ConstIterator<float> read_y(point_cloud_msg, "y");
     sensor_msgs::PointCloud2Iterator<float> write_x(points, "x");
     sensor_msgs::PointCloud2Iterator<float> write_y(points, "y");
     sensor_msgs::PointCloud2Iterator<float> write_z(points, "z");
