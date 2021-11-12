@@ -1,0 +1,13 @@
+<launch>
+    <arg name="camera_name" default="camera"/>
+    <arg name="square_size" default="3"/>
+    <arg name="error" default="1.0"/>
+    <group ns="adaptive_thresholding">
+        <param name="pointcloud_topic" value="/$(arg camera_name)/depth/color/points"/>
+        <param name="objects_cloud_topic" value="objects_points"/>
+        <param name="background_cloud_topic" value="background_points"/>
+        <param name="square_size" value="$(arg square_size)"/>
+        <param name="error" value="$(arg error)"/>
+        <node name="adaptive_thresholding_node" pkg="pointcloud_tests" type="adaptive_thresholding_node" output="screen"/>
+    </group>
+</launch>

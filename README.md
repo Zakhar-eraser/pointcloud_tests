@@ -20,3 +20,15 @@ The picture shows how program calculates angles with flat wall
 The picture shows how program calculates angles with noisy wall without filters
 
 Change window size to activate mean filter (see upper)
+
+## Thresholding
+Launch:
+~~~
+roslaunch pointcloud_tests adaptive_thresholding.launch
+~~~
+### Parameters
+* __error__ - square of a mean and current distances difference divided on the mean distance and multiplied on 10000
+* __square_size__ - square of points which center point is the current point
+
+![Alt text](docs/models2threshold.png)
+![Alt text](docs/threshoding.png)
