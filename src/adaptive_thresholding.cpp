@@ -44,8 +44,8 @@ void Threshold(sensor_msgs::PointCloud2ConstIterator<float> src,
             else
             {
                 float mean = Mean(src, squareSize, j, i, width);
-                float value = (src + order)[2] - mean;
-                if(/*(src + order)[2] > mean*/ value * value / mean * 10000.0f > error)
+                float value = mean - (src + order)[2];
+                if(/*(src + order)[2] > mean*/ value > error)
                 {
                     (dstBack + order)[2] = std::numeric_limits<float>::quiet_NaN();
                 }
