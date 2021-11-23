@@ -32,3 +32,26 @@ roslaunch pointcloud_tests adaptive_thresholding.launch
 
 ![Alt text](docs/models2threshold.png)
 ![Alt text](docs/threshoding.png)
+
+## Object detection
+
+To launch object detection with threshold use:
+
+~~~
+roslaunch pointcloud_tests object_detection_with_threshold.launch
+~~~
+
+without threshold:
+
+~~~
+roslaunch pointcloud_tests object_detection.launch
+~~~
+
+### Algorithm
+
+* Find a non-empty point
+* Get a contour of object which starts and ends on the initial point
+* Get all object points within the contour
+* Repeat
+
+![Alt text](docs/object_detection.png)
