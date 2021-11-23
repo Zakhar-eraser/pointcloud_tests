@@ -6,6 +6,8 @@
     <include file="$(find pointcloud_tests)/launch/adaptive_thresholding.launch">
         <arg name="namespace" value="$(arg thresholding_ns)"/>
         <arg name="objects_cloud_topic" value="$(arg thresholded_points_topic)"/>
+        <arg name="square_size" value="5"/>
+        <arg name="error" value="0.000005"/>
     </include>
     <include file="$(find pointcloud_tests)/launch/object_detection.launch">
         <arg name="namespace" value="$(arg object_detection_ns)"/>
