@@ -1,10 +1,12 @@
 <launch>
+    <arg name="namespace" default="adaptive_thresholding"/>
     <arg name="camera_name" default="camera"/>
+    <arg name="objects_cloud_topic" default="objects_points"/>
     <arg name="square_size" default="3"/>
     <arg name="error" default="0.000001"/>
-    <group ns="adaptive_thresholding">
+    <group ns="$(arg namespace)">
         <param name="pointcloud_topic" value="/$(arg camera_name)/depth/color/points"/>
-        <param name="objects_cloud_topic" value="objects_points"/>
+        <param name="objects_cloud_topic" value="$(arg objects_cloud_topic)"/>
         <param name="background_cloud_topic" value="background_points"/>
         <param name="square_size" value="$(arg square_size)"/>
         <param name="error" value="$(arg error)"/>

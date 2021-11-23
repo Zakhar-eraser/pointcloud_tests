@@ -1,0 +1,13 @@
+<launch>
+    <arg name="namespace" default="adaptive_thresholding"/>
+    <arg name="points_ns" default="$(arg namespace)"/>
+    <arg name="min_object_size" default="20"/>
+    <arg name="pointcloud_name" default="points"/>
+    <arg name="gravity_centers_name" default="objects_centers"/>
+    <group ns="$(arg namespace)">
+        <param name="min_object_size" value="$(arg min_object_size)"/>
+        <param name="pointcloud_topic" value="/$(arg points_ns)/$(arg pointcloud_name)"/>
+        <param name="gravity_centers_topic" value="/$(arg gravity_centers_name)"/>
+        <node name="object_detection_node" pkg="pointcloud_tests" type="object_detection_node" output="screen"/>
+    </group>
+</launch>
