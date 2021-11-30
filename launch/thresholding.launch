@@ -1,0 +1,15 @@
+<launch>
+    <arg name="namespace" default="thresholding"/>
+    <arg name="camera_name" default="camera"/>
+    <arg name="objects_cloud_topic" default="objects_points"/>
+    <arg name="threshold_min" default="0.2"/>
+    <arg name="threshold_max" default="1.0"/>
+    <group ns="$(arg namespace)">
+        <param name="pointcloud_topic" value="/$(arg camera_name)/depth/color/points"/>
+        <param name="objects_cloud_topic" value="$(arg objects_cloud_topic)"/>
+        <param name="background_cloud_topic" value="background_points"/>
+        <param name="threshold_min" value="$(arg threshold_min)"/>
+        <param name="threshold_max" value="$(arg threshold_max)"/>
+        <node name="thresholding_node" pkg="pointcloud_tests" type="thresholding_node" output="screen"/>
+    </group>
+</launch>

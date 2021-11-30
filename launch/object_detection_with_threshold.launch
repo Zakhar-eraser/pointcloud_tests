@@ -1,13 +1,13 @@
 <launch>
-    <arg name="thresholding_ns" default="adaptive_threshoding"/>
+    <arg name="thresholding_ns" default="thresholding"/>
     <arg name="object_detection_ns" default="object_detection"/>
     <arg name="thresholded_points_topic" default="objects_cloud_topic"/>
     <arg name="gravity_centers_topic" default="objects_centers"/>
-    <include file="$(find pointcloud_tests)/launch/adaptive_thresholding.launch">
+    <include file="$(find pointcloud_tests)/launch/thresholding.launch">
         <arg name="namespace" value="$(arg thresholding_ns)"/>
         <arg name="objects_cloud_topic" value="$(arg thresholded_points_topic)"/>
-        <arg name="square_size" value="5"/>
-        <arg name="error" value="0.000005"/>
+        <arg name="threshold_min" default="0.2"/>
+        <arg name="threshold_max" default="1.0"/>
     </include>
     <include file="$(find pointcloud_tests)/launch/object_detection.launch">
         <arg name="namespace" value="$(arg object_detection_ns)"/>
